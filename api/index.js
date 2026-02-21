@@ -8,12 +8,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Main Route
+
 app.get('/api/tools/proxy', async (req, res) => {
     const targetUrl = req.query.url;
     const startTime = Date.now();
 
-    // 1. Validasi jika URL tidak ada
     if (!targetUrl) {
         return res.status(400).json({
             success: false,
@@ -22,7 +21,7 @@ app.get('/api/tools/proxy', async (req, res) => {
     }
 
     try {
-        // 2. Lakukan request ke URL tujuan dengan Header Browser Lengkap
+        
         const response = await axios({
             method: 'get',
             url: targetUrl,
@@ -49,7 +48,6 @@ app.get('/api/tools/proxy', async (req, res) => {
         const endTime = Date.now();
         const responseTime = `${endTime - startTime}ms`;
 
-        // 3. Susun Response (Struktur tetap sama dengan api lama Anda)
         res.status(200).json({
             success: true,
             result: {
@@ -64,7 +62,6 @@ app.get('/api/tools/proxy', async (req, res) => {
     } catch (error) {
         const endTime = Date.now();
         
-        // Handle Error tanpa mengubah struktur response asli Anda
         res.status(error.response?.status || 500).json({
             success: false,
             result: {
