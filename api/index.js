@@ -42,7 +42,7 @@ app.get('/api/tools/proxy', async (req, res) => {
                 'Upgrade-Insecure-Requests': '1',
                 'Connection': 'keep-alive',
             },
-            timeout: 15000 // Saya naikkan ke 15 detik karena Cloudflare butuh waktu lebih lama untuk memproses
+            timeout: 10000 
         });
 
         const endTime = Date.now();
